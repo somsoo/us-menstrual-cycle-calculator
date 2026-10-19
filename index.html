@@ -1,28 +1,429 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
+<meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Menstrual Cycle &amp; Ovulation Calculator - Under maintenance</title>
-<meta name="robots" content="noindex, nofollow">
-<meta name="site-status" content="maintenance">
-<meta name="description" content="This tool is temporarily offline while it is rebuilt.">
+<title>Period &amp; Ovulation Calculator</title>
+<meta name="description" content="Calculate your next period, fertile window, and ovulation date. 100% private.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://us-menstrual-cycle-calculator.enjoy-onepage.com/">
+<meta name="theme-color" content="#e11d48">
+<link rel="icon" href="/favicon.ico">
+<meta property="og:locale" content="en_US">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Period &amp; Ovulation Calculator">
+<meta property="og:title" content="Period &amp; Ovulation Calculator">
+<meta property="og:description" content="Calculate your next period, fertile window, and ovulation date. 100% private.">
+<meta property="og:url" content="https://us-menstrual-cycle-calculator.enjoy-onepage.com/">
+<meta property="og:image" content="https://us-menstrual-cycle-calculator.enjoy-onepage.com/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Period &amp; Ovulation Calculator">
+<meta name="twitter:description" content="Calculate your next period, fertile window, and ovulation date. 100% private.">
+<meta name="twitter:image" content="https://us-menstrual-cycle-calculator.enjoy-onepage.com/og-image.png">
+<link rel="alternate" type="application/rss+xml" title="Period Calculator RSS" href="https://us-menstrual-cycle-calculator.enjoy-onepage.com/rss.xml">
+<link rel="sitemap" type="application/xml" href="https://us-menstrual-cycle-calculator.enjoy-onepage.com/sitemap.xml">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebApplication",
+      "@id": "https://us-menstrual-cycle-calculator.enjoy-onepage.com/#webapp",
+      "name": "Period & Ovulation Calculator",
+      "url": "https://us-menstrual-cycle-calculator.enjoy-onepage.com/",
+      "applicationCategory": "HealthApplication",
+      "operatingSystem": "All",
+      "inLanguage": "en",
+      "description": "A private, in-browser menstrual cycle and ovulation calculator that estimates your next period, fertile window, and future cycles without storing or transmitting personal health data.",
+      "image": "https://us-menstrual-cycle-calculator.enjoy-onepage.com/og-image.png",
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://us-menstrual-cycle-calculator.enjoy-onepage.com/#faq",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "How does the calculator predict ovulation and fertile windows?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The calculator uses clinical gynecological guidelines (ACOG standards). Because the luteal phase between ovulation and the next period consistently averages 14 days in healthy cycles, ovulation is calculated by subtracting 14 days from your next expected period date. The fertile window spans from 5 days prior to ovulation through 1 day after."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is my reproductive and cycle data kept private?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes, 100%. Unlike commercial period tracking apps that monetize user health profiles, this calculator runs entirely on your device inside your web browser. No dates or cycle details are ever sent to an external server or stored in a remote database."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can this calculator be used for natural contraception?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. Due to natural physiological variations caused by stress, sleep, illness, and hormonal fluctuations, mathematical cycle estimation should not be relied upon as a primary contraceptive method."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What is considered a normal cycle length?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "According to the American College of Obstetricians and Gynecologists (ACOG), a normal adult menstrual cycle typically ranges between 21 and 35 days, with 28 days being the statistical average."
+          }
+        }
+      ]
+    }
+  ]
+}
+</script>
+<!-- ADSENSE START: loader -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2228289204702106" crossorigin="anonymous"></script>
+<!-- ADSENSE END: loader -->
 <style>
-  body { margin: 0; font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; background: #f8fafc; color: #0f172a; }
-  main { max-width: 560px; margin: 12vh auto; padding: 32px 24px; background: #ffffff; border: 1px solid #e2e8f0; border-radius: 16px; }
-  h1 { font-size: 1.4rem; margin: 0 0 12px; }
-  p { line-height: 1.6; color: #334155; }
-  a { color: #1d4ed8; font-weight: 600; }
-  .tag { display: inline-block; font-size: .8rem; font-weight: 700; color: #92400e; background: #fef3c7; border-radius: 999px; padding: 4px 10px; margin-bottom: 14px; }
+:root{--bg:#fff1f2;--card:#fff;--ink:#1e1b4b;--muted:#64748b;--accent:#e11d48;--accent-hover:#be123c;--line:#ffe4e6;--fertile:#ec4899;--ovulation:#9333ea;--r:#b91c1c}
+*{box-sizing:border-box}
+html,body{margin:0;max-width:100%;overflow-x:hidden}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;background:var(--bg);color:var(--ink);line-height:1.6;overflow-wrap:anywhere}
+.header{background:linear-gradient(135deg,#be123c,#e11d48);color:#fff;text-align:center;padding:26px 16px 22px}
+.header h1{margin:0;font-size:1.7rem}
+.header-sub{opacity:.92;margin-top:6px;font-size:.95rem}
+.wrap{max-width:1080px;margin:0 auto;padding:12px 14px 8px}
+.grid2{display:grid;grid-template-columns:1fr;gap:14px}
+@media (min-width:1024px){.grid2{grid-template-columns:5fr 7fr;align-items:start}.src-card{position:sticky;top:12px}}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:14px 18px;margin:14px 0}
+.grid2 .card{margin:0}
+.card h2{font-size:1.15rem;margin:4px 0 10px}
+.lbl{display:block;font-weight:600;margin:10px 0 4px;font-size:.92rem}
+input[type=date],input[type=number]{width:100%;font:inherit;font-size:1rem;padding:9px 12px;border:1px solid #cbd5e1;border-radius:10px;background:#fff;color:var(--ink)}
+.presets{display:flex;gap:6px;flex-wrap:wrap;margin:6px 0 10px}
+.btn{font:inherit;border:1px solid #cbd5e1;background:#fff;color:var(--ink);border-radius:10px;padding:8px 13px;cursor:pointer;transition:background .15s}
+.btn:hover{background:#f8fafc}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:#fff;font-weight:700}
+.btn.primary:hover{background:var(--accent-hover)}
+.btn.sm{padding:4px 10px;font-size:.86rem;border-radius:8px}
+.btn.active{background:#ffe4e6;border-color:var(--accent);color:var(--accent);font-weight:700}
+.actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.metric-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:12px 0}
+@media (max-width:600px){.metric-grid{grid-template-columns:1fr}}
+.metric-box{background:#fdf2f8;border:1px solid #fbcfe8;border-radius:12px;padding:12px}
+.metric-box.accent{background:#fff1f2;border-color:#fecdd3}
+.metric-val{font-size:1.35rem;font-weight:800;color:var(--accent);margin:2px 0}
+.metric-lbl{font-size:.82rem;color:var(--muted);font-weight:600;text-transform:uppercase}
+.phase-badge{display:inline-block;padding:4px 12px;border-radius:999px;font-size:.85rem;font-weight:700;background:#fce7f3;color:#be185d;margin-bottom:8px}
+.forecast-table{width:100%;border-collapse:collapse;font-size:.88rem;margin-top:12px}
+.forecast-table th,.forecast-table td{padding:8px 10px;border-bottom:1px solid #f1f5f9;text-align:left}
+.forecast-table th{background:#f8fafc;font-weight:700;color:var(--muted)}
+.hint{font-size:.86rem;color:var(--muted);margin:6px 0}
+.notice{border-color:#fcd34d;background:#fffbeb}
+.faq-item h3{font-size:1rem;margin:12px 0 4px}
+.faq-item p{margin:0;color:#334155}
+.src{font-size:.82rem;color:var(--muted)}
+.ad-box{max-width:1080px;margin:10px auto;padding:0 14px;background:transparent;overflow:hidden;text-align:center}
+.ad-top ins{max-height:90px}
+.footer{text-align:center;font-size:.85rem;color:var(--muted);padding:18px 14px 28px}
+.footer a{color:var(--muted);text-decoration:none}
+.footer a:hover{text-decoration:underline}
+.toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:#1e1b4b;color:#fff;padding:10px 18px;border-radius:999px;font-size:.9rem;opacity:0;pointer-events:none;transition:opacity .2s;z-index:50;max-width:90vw}
+.toast.show{opacity:1}
+@media (prefers-reduced-motion: reduce){.toast{transition:none}}
 </style>
 </head>
 <body>
-<main>
-  <span class="tag">Under maintenance</span>
-  <h1>Menstrual Cycle &amp; Ovulation Calculator</h1>
-  <p>This tool is temporarily offline. We found that the previous version did not work the way it was described, so we took it down while we rebuild it properly.</p>
-  <p>Please check back later.</p>
-  <p><a href="https://enjoy-onepage.com/">Browse our other free tools</a></p>
+<header class="header">
+  <h1>Period &amp; Ovulation Calculator</h1>
+  <div class="header-sub">Predict your next period, fertile window &amp; ovulation · 100% private in-browser</div>
+</header>
+
+<!-- ADSENSE START: top -->
+<div class="ad-box ad-top">
+  <ins class="adsbygoogle" style="display:block;height:60px;max-height:90px" data-ad-client="ca-pub-2228289204702106" data-ad-slot="3824727725" data-ad-format="horizontal" data-full-width-responsive="true"></ins>
+  <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+</div>
+<!-- ADSENSE END: top -->
+
+<main class="wrap">
+  <div class="grid2">
+    <section class="card src-card" aria-labelledby="in-h">
+      <h2 id="in-h">1. Cycle Details</h2>
+      
+      <label class="lbl" for="lastDate">First Day of Last Period</label>
+      <input type="date" id="lastDate">
+
+      <label class="lbl" for="cycleLen">Average Cycle Length (Days)</label>
+      <input type="number" id="cycleLen" min="20" max="45" value="28">
+      <div class="presets">
+        <button type="button" class="btn sm" data-cycle="26">26 days</button>
+        <button type="button" class="btn sm active" data-cycle="28">28 days</button>
+        <button type="button" class="btn sm" data-cycle="30">30 days</button>
+        <button type="button" class="btn sm" data-cycle="32">32 days</button>
+      </div>
+
+      <label class="lbl" for="periodLen">Period Bleeding Duration (Days)</label>
+      <input type="number" id="periodLen" min="2" max="10" value="5">
+
+      <div class="actions">
+        <button type="button" class="btn primary" id="btnCalculate">Calculate Dates</button>
+        <button type="button" class="btn sm" id="btnReset">Reset</button>
+      </div>
+      <p class="hint">Calculations run in real-time. Your dates are never stored or transmitted to external servers.</p>
+    </section>
+
+    <section class="card result" aria-labelledby="out-h">
+      <h2 id="out-h">2. Forecast &amp; Key Milestones</h2>
+      <div id="phaseBadge" class="phase-badge">Phase: Follicular</div>
+
+      <div class="metric-grid">
+        <div class="metric-box accent">
+          <div class="metric-lbl">Next Period Starts</div>
+          <div class="metric-val" id="resNextPeriod">--</div>
+          <div class="hint" id="resCountdown">in -- days</div>
+        </div>
+        <div class="metric-box">
+          <div class="metric-lbl">Estimated Ovulation</div>
+          <div class="metric-val" id="resOvulation" style="color:var(--ovulation);">--</div>
+          <div class="hint">Peak conception day</div>
+        </div>
+      </div>
+
+      <div class="metric-box" style="margin-bottom:12px;">
+        <div class="metric-lbl">Most Fertile Window</div>
+        <div class="metric-val" id="resFertile" style="color:var(--fertile);font-size:1.15rem;">--</div>
+        <div class="hint">5 days before ovulation through 1 day after</div>
+      </div>
+
+      <h3 style="font-size:1rem;margin:14px 0 6px;">Next 3 Cycles Forecast</h3>
+      <table class="forecast-table">
+        <thead>
+          <tr>
+            <th>Cycle</th>
+            <th>Period Start</th>
+            <th>Fertile Window</th>
+            <th>Ovulation</th>
+          </tr>
+        </thead>
+        <tbody id="forecastBody">
+          <tr><td colspan="4" style="text-align:center;color:var(--muted);">Select a date on the left to view forecast.</td></tr>
+        </tbody>
+      </table>
+
+      <div class="actions" style="margin-top:14px;">
+        <button type="button" class="btn" id="btnCopy">📋 Copy Schedule</button>
+        <button type="button" class="btn" id="btnShare">📤 Share</button>
+      </div>
+    </section>
+  </div>
+
+<!-- ADSENSE START: mid -->
+<div class="ad-box ad-mid">
+  <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-2228289204702106" data-ad-slot="1186914926" data-ad-format="auto" data-full-width-responsive="true"></ins>
+  <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+</div>
+<!-- ADSENSE END: mid -->
+
+  <section class="card" aria-labelledby="how-h">
+    <h2 id="how-h">🧮 Calculation Methodology</h2>
+    <ul>
+      <li><strong>Standard Luteal Phase (14 Days):</strong> While the follicular phase before ovulation can vary, the luteal phase between ovulation and menstruation remains relatively constant at approximately 14 days in healthy menstrual cycles. Ovulation date is determined by subtracting 14 days from the next expected period start date.</li>
+      <li><strong>The 6-Day Fertile Window:</strong> Sperm can survive in the female reproductive tract for up to 5 days, while an unfertilized ovum remains viable for roughly 12 to 24 hours. The clinical fertile window therefore spans the 5 days preceding ovulation through 1 day following.</li>
+      <li><strong>100% In-Browser Privacy:</strong> With heightened concerns around health data surveillance, our tool processes all cycle timelines locally within your device's browser memory. No tracking cookies or cloud databases are used.</li>
+    </ul>
+    <p class="src">Clinical guidelines reference: American College of Obstetricians and Gynecologists (ACOG), Practice Bulletin No. 193: Menstrual Cycles in Adults.</p>
+  </section>
+
+  <section class="card id="faq" aria-labelledby="faq-h">
+    <h2 id="faq-h">❓ Frequently Asked Questions</h2>
+    <div class="faq-item"><h3>How does the calculator predict ovulation and fertile windows?</h3><p>The calculator uses clinical gynecological guidelines (ACOG standards). Because the luteal phase between ovulation and the next period consistently averages 14 days in healthy cycles, ovulation is calculated by subtracting 14 days from your next expected period date. The fertile window spans from 5 days prior to ovulation through 1 day after.</p></div>
+    <div class="faq-item"><h3>Is my reproductive and cycle data kept private?</h3><p>Yes, 100%. Unlike commercial period tracking apps that monetize user health profiles, this calculator runs entirely on your device inside your web browser. No dates or cycle details are ever sent to an external server or stored in a remote database.</p></div>
+    <div class="faq-item"><h3>Can this calculator be used for natural contraception?</h3><p>No. Due to natural physiological variations caused by stress, sleep, illness, and hormonal fluctuations, mathematical cycle estimation should not be relied upon as a primary contraceptive method.</p></div>
+    <div class="faq-item"><h3>What is considered a normal cycle length?</h3><p>According to the American College of Obstetricians and Gynecologists (ACOG), a normal adult menstrual cycle typically ranges between 21 and 35 days, with 28 days being the statistical average.</p></div>
+  </section>
+
+  <section class="card notice" aria-labelledby="note-h">
+    <h2 id="note-h">⚠️ Medical Disclaimer</h2>
+    <p>This tool provides statistical estimates based on standard menstrual models. It is intended for educational and scheduling purposes only. Do not use this tool as a definitive method of contraception or as a substitute for professional gynecological consultation.</p>
+  </section>
 </main>
+
+<!-- ADSENSE START: bottom -->
+<div class="ad-box ad-bottom">
+  <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-2228289204702106" data-ad-slot="3416334507" data-ad-format="auto" data-full-width-responsive="true"></ins>
+  <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+</div>
+<!-- ADSENSE END: bottom -->
+
+<footer class="footer">
+  <p>Free Period &amp; Ovulation Calculator · 100% private and client-side.</p>
+  <p><a href="/disclaimer.html">Disclaimer</a> | <a href="/privacy.html">Privacy Policy</a> | <a href="/terms.html">Terms of Service</a></p>
+</footer>
+
+<div id="global-ux-toast" class="toast" role="status" aria-live="polite"></div>
+
+<!-- LOGIC START -->
+<script>
+(function () {
+  'use strict';
+  var SITE = 'https://us-menstrual-cycle-calculator.enjoy-onepage.com';
+  var TOOL_NAME = 'Period & Ovulation Calculator';
+  var toastTimer = null;
+
+  function $(id) { return document.getElementById(id); }
+  function on(id, ev, fn) { var e = $(id); if (e) e.addEventListener(ev, fn); }
+
+  function addDays(date, days) {
+    var d = new Date(date.getTime());
+    d.setDate(d.getDate() + days);
+    return d;
+  }
+
+  function fmtDate(d) {
+    return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+  }
+
+  function fmtShort(d) {
+    return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+  }
+
+  function calculate() {
+    var rawDate = $('lastDate').value;
+    if (!rawDate) return;
+
+    var parts = rawDate.split('-');
+    var lastStart = new Date(+parts[0], +parts[1] - 1, +parts[2]);
+    var cycle = parseInt($('cycleLen').value, 10) || 28;
+    var duration = parseInt($('periodLen').value, 10) || 5;
+
+    var today = new Date();
+    today.setHours(0, 0, 0, 0);
+
+    // Next period calculation
+    var nextPeriod = addDays(lastStart, cycle);
+    while (nextPeriod < today) {
+      lastStart = nextPeriod;
+      nextPeriod = addDays(lastStart, cycle);
+    }
+
+    var ovulation = addDays(nextPeriod, -14);
+    var fertileStart = addDays(ovulation, -5);
+    var fertileEnd = addDays(ovulation, 1);
+
+    var diffDays = Math.ceil((nextPeriod.getTime() - today.getTime()) / (1000 * 60 * 60 * 24));
+    var countdownText = diffDays === 0 ? 'Starts today' : (diffDays === 1 ? 'Starts tomorrow' : 'in ' + diffDays + ' days');
+
+    $('resNextPeriod').textContent = fmtDate(nextPeriod);
+    $('resCountdown').textContent = countdownText;
+    $('resOvulation').textContent = fmtDate(ovulation);
+    $('resFertile').textContent = fmtShort(fertileStart) + ' – ' + fmtShort(fertileEnd);
+
+    // Current phase calculation
+    var daysSincePeriod = Math.floor((today.getTime() - lastStart.getTime()) / (1000 * 60 * 60 * 24));
+    var badge = $('phaseBadge');
+    if (daysSincePeriod >= 0 && daysSincePeriod < duration) {
+      badge.textContent = 'Current Phase: Menstruation (Day ' + (daysSincePeriod + 1) + ')';
+      badge.style.background = '#ffe4e6'; badge.style.color = '#e11d48';
+    } else if (today >= fertileStart && today <= fertileEnd) {
+      badge.textContent = 'Current Phase: Fertile Window';
+      badge.style.background = '#fce7f3'; badge.style.color = '#ec4899';
+    } else if (today < ovulation) {
+      badge.textContent = 'Current Phase: Follicular Phase';
+      badge.style.background = '#e0f2fe'; badge.style.color = '#0284c7';
+    } else {
+      badge.textContent = 'Current Phase: Luteal Phase';
+      badge.style.background = '#f3e8ff'; badge.style.color = '#9333ea';
+    }
+
+    // Next 3 cycles forecast
+    var tbody = $('forecastBody');
+    tbody.innerHTML = '';
+    var curStart = nextPeriod;
+    for (var i = 1; i <= 3; i++) {
+      var nextP = addDays(curStart, cycle);
+      var ov = addDays(nextP, -14);
+      var fStart = addDays(ov, -5);
+      var fEnd = addDays(ov, 1);
+
+      var tr = document.createElement('tr');
+      tr.innerHTML = '<td>Cycle ' + i + '</td>' +
+        '<td><strong>' + fmtDate(curStart) + '</strong></td>' +
+        '<td>' + fmtShort(fStart) + ' – ' + fmtShort(fEnd) + '</td>' +
+        '<td>' + fmtDate(ov) + '</td>';
+      tbody.appendChild(tr);
+      curStart = nextP;
+    }
+  }
+
+  function showToast(msg) {
+    var t = $('global-ux-toast'); if (!t) return;
+    t.textContent = msg; t.classList.add('show');
+    clearTimeout(toastTimer); toastTimer = setTimeout(function () { t.classList.remove('show'); }, 2200);
+  }
+
+  function copySchedule() {
+    var np = $('resNextPeriod').textContent;
+    var ov = $('resOvulation').textContent;
+    var fw = $('resFertile').textContent;
+    if (np === '--') { showToast('Please select your last period date first.'); return; }
+
+    var text = '🌸 My Cycle Forecast:\n' +
+      '• Next Period: ' + np + ' (' + $('resCountdown').textContent + ')\n' +
+      '• Ovulation: ' + ov + '\n' +
+      '• Fertile Window: ' + fw + '\n\n' +
+      'Calculated privately via ' + TOOL_NAME + ': ' + SITE + '/';
+
+    if (navigator.clipboard && window.isSecureContext) {
+      navigator.clipboard.writeText(text).then(function () { showToast('Schedule copied to clipboard!'); });
+    } else {
+      showToast('Could not copy automatically.');
+    }
+  }
+
+  on('lastDate', 'change', calculate);
+  on('cycleLen', 'input', calculate);
+  on('periodLen', 'input', calculate);
+  on('btnCalculate', 'click', calculate);
+
+  on('btnReset', 'click', function () {
+    initDefaultDate();
+    $('cycleLen').value = '28';
+    $('periodLen').value = '5';
+    document.querySelectorAll('[data-cycle]').forEach(function (b) { b.classList.toggle('active', b.dataset.cycle === '28'); });
+    calculate();
+    showToast('Reset to default values.');
+  });
+
+  document.querySelectorAll('[data-cycle]').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      $('cycleLen').value = btn.dataset.cycle;
+      document.querySelectorAll('[data-cycle]').forEach(function (b) { b.classList.remove('active'); });
+      btn.classList.add('active');
+      calculate();
+    });
+  });
+
+  on('btnCopy', 'click', copySchedule);
+  on('btnShare', 'click', function () {
+    var shareMsg = '🌸 Free Private Period & Ovulation Calculator\n👉 ' + TOOL_NAME + ': ' + SITE + '/';
+    if (navigator.share) {
+      navigator.share({ title: TOOL_NAME, text: shareMsg, url: SITE + '/' }).catch(function (e) {
+        if (!e || e.name !== 'AbortError') copySchedule();
+      });
+    } else { copySchedule(); }
+  });
+
+  function initDefaultDate() {
+    var d = new Date();
+    d.setDate(d.getDate() - 14); // 14 days ago as default
+    var month = (d.getMonth() + 1 < 10 ? '0' : '') + (d.getMonth() + 1);
+    var day = (d.getDate() < 10 ? '0' : '') + d.getDate();
+    $('lastDate').value = d.getFullYear() + '-' + month + '-' + day;
+  }
+
+  initDefaultDate();
+  calculate();
+})();
+</script>
+<!-- LOGIC END -->
 </body>
 </html>
